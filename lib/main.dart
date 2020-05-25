@@ -38,7 +38,7 @@ class _MyAppState extends State<MyApp> {
       },
       {
         "questionText": "What is your age?",
-        "answer": [21, 22, 25]
+        "answer": ["21" , "22" , "25"]
       },
       {
         "questionText": "What is your favorite food?",
@@ -49,10 +49,10 @@ class _MyAppState extends State<MyApp> {
     // takes in "named" arguments
     // home -> core widget
     return MaterialApp(
-        home: new Scaffold(
+      home: new Scaffold(
       appBar: AppBar(title: Text("My First App")),
       body: Column(
-        children: <Widget>[
+        children: [
           // Custom Widgets
           // will display the current question from our map
           Question(

@@ -50,9 +50,16 @@ class _MyAppState extends State<MyApp> {
   // here is where we set the State for the index
   void _answerMyQuestion(int score) {
     totalScore += score;
-
     setState(() {
       _questionIndex += 1;
+    });
+  }
+
+  // start quiz over
+  void resetQuiz() {
+    setState(() {
+      _questionIndex = 0;
+      totalScore = 0;
     });
   }
 
@@ -71,7 +78,7 @@ class _MyAppState extends State<MyApp> {
               answerQuestion: _answerMyQuestion,
               questionIndex: _questionIndex,
               questions: _myQuestionList)
-          : Result(totalScore),
+          : Result(totalScore , resetQuiz),
     ));
   }
 }

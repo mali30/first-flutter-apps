@@ -20,8 +20,11 @@ class Quiz extends StatelessWidget {
           questions[questionIndex]["questionText"],
         ),
         // pulls values out of list adds into one list instead of list of list
-        ...(questions[questionIndex]["answer"] as List<String>).map((answer) {
-          return Answer(answerQuestion, answer);
+        ...(questions[questionIndex]["answer"] as List<Map<String, Object>>).map((answer) {
+          // creating function on the fly
+          // executed when onPressed is triggered
+          // address gets bounded to the button
+          return Answer(() => answerQuestion(answer['score']), answer["text"]);
         }).toList()
       ],
     );

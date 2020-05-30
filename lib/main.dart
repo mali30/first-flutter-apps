@@ -18,29 +18,44 @@ class MyApp extends StatefulWidget {
 // MyAppState is stateful
 class _MyAppState extends State<MyApp> {
   int _questionIndex = 0;
+  var totalScore = 0;
 
   final _myQuestionList = const [
     {
       "questionText": "What is your name?",
-      "answer": ["Larry", "Curly", "Moe"]
+      "answer": [
+        {"text": "Larry", "score": 10},
+        {"text": "Curly", "score": 5},
+        {"text": "Moe", "score": 20}
+      ]
     },
     {
-      "questionText": "What is your age?",
-      "answer": ["21", "22", "25"]
+      "questionText": "What is your favorite animal?",
+      "answer": [
+        {"text": "Tiger", "score": 20},
+        {"text": "Rabbit", "score": 9},
+        {"text": "Dog", "score": 1}
+      ]
     },
     {
       "questionText": "What is your favorite food?",
-      "answer": ["pizza", "chicken", "chick-fil-a"]
+      "answer": [
+        {"text": " Chicken", "score": 50},
+        {"text": "Pizza", "score": 25},
+        {"text": "Halal Guys", "score": 20}
+      ]
     },
   ];
 
   // here is where we set the State for the index
-  void _answerMyQuestion() {
+  void _answerMyQuestion(int score) {
+    totalScore += score;
+
     setState(() {
       _questionIndex += 1;
     });
   }
-  
+
   @override
 //  build method must be called
   Widget build(BuildContext context) {
@@ -49,14 +64,14 @@ class _MyAppState extends State<MyApp> {
     // takes in "named" arguments
     // home -> core widget
     return MaterialApp(
-      home: new Scaffold(
+        home: new Scaffold(
       appBar: AppBar(title: Text("My First App")),
       body: _questionIndex < _myQuestionList.length
           ? Quiz(
               answerQuestion: _answerMyQuestion,
               questionIndex: _questionIndex,
               questions: _myQuestionList)
-          : Result() ,
+          : Result(totalScore),
     ));
   }
 }
